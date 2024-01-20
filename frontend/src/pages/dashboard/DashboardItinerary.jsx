@@ -26,12 +26,17 @@ function DashboardItinerary({ itinerary }) {
     };
 
     // Function to close the dialog
-    const handleClose = () => {
+    const handleClose = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        
         setOpen(false);
     };
 
     // Function to call when delete is confirmed
-    const handleConfirmDelete = () => {
+    const handleConfirmDelete = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
 
         handleClose();
         // console.log("Delete! ClaimID: ", claim.ClaimID);
@@ -42,16 +47,20 @@ function DashboardItinerary({ itinerary }) {
     };
 
     // Function to call when delete icon is clicked
-    const handleDelete = () => {
+    const handleDelete = (event) => {
         // console.log("claim: ", claim.Status)
         // console.log("Delete! ClaimID: ", claim.ClaimID)
+        event.preventDefault();
+        event.stopPropagation();
         handleClickOpen();
     };
 
     // Function to call when edit icon is clicked
-    const handleEdit = () => {
+    const handleEdit = (event) => {
         //onEdit(itinerary.id); // Or handle the edit logic directly here
         // route to edit page
+        event.preventDefault();
+        event.stopPropagation();
         navigate('/edit-itinerary')
     };
 
@@ -74,14 +83,14 @@ function DashboardItinerary({ itinerary }) {
                 </CardContent>
                 <IconButton 
                     aria-label="delete" 
-                    onClick={handleDelete} 
+                    onClick={(event) => handleDelete(event)} 
                     sx={{ position: 'absolute', top: '10px', right: '10px' }}
                 >
                     <DeleteIcon />
                 </IconButton>
                 <IconButton 
                     aria-label="edit" 
-                    onClick={handleEdit} 
+                    onClick= {(event) => handleEdit(event)} 
                     sx={{ position: 'absolute', top: '10px', right: '50px' }} // Adjust the position as needed
                 >
                     <EditIcon />
@@ -101,8 +110,8 @@ function DashboardItinerary({ itinerary }) {
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleClose}>Cancel</Button>
-                        <Button onClick={handleConfirmDelete} autoFocus>
+                        <Button onClick={(event) => handleClose(event)}>Cancel</Button>
+                        <Button onClick={(event) => handleConfirmDelete(event)} autoFocus>
                             Confirm Delete
                         </Button>
                     </DialogActions>
