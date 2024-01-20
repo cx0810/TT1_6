@@ -51,43 +51,43 @@ const dashboard = () => {
   useEffect(() => {
 
     const fetchData = async () => {
-      try {
-        /*
-        GOAL:
-          Display user’s existing itineraries [2].
-          ▪
-          Itinerary Title
-          ▪
-          Budget
-          ▪
-          Country
-          ▪
-          List of Destinations included
-        */
+            /*
+      GOAL:
+        Display user’s existing itineraries [2].
+        ▪
+        Itinerary Title
+        ▪
+        Budget
+        ▪
+        Country
+        ▪
+        List of Destinations included
+      */
         const itineraryList = [
           {
             "id": 1,
             "Title": "Dinner",
             "Budget": 200,
             "Country": "Singapore",
-            "List of Destinations included": 
+            "Destinations": 
             [
               "Singapore",
             ]
           },
           {
             "id": 2,
-            "Title": "Dinner",
+            "Title": "Dinner 2",
             "Budget": 200,
-            "Country": "Singapore",
+            "Country": "Singapore 2",
             "List of Destinations included": 
             [
               "Singapore",
             ]
           }
       ]
-
-        setItineraryList(itineraryList);
+  
+      setItineraryList(itineraryList);
+      try {
         // const response = await axios.get('http://localhost:5000/insurance_claims/58001001')
         // const data = await response.data;
         // console.log('Claim data:', data);
@@ -110,7 +110,7 @@ const dashboard = () => {
     };
 
     fetchData();
-  })
+  },[])
 
   return (
     <Box margin={4}>
