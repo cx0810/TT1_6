@@ -55,7 +55,7 @@ def create_destination():
     try:
         data = request.get_json()
 
-        if not data or 'id' not in data: 
+        if not data or 'country_id' not in data: 
             return jsonify({"code": 400, "message": "Invalid data"}), 400
         
         #check if name is empty
@@ -116,17 +116,27 @@ def delete_destination(destination_id):
     #delete destination
 
     try:
-        data = request.get_json()
+ #check if itinerary exists
+        existing_destination = Destination.query.filter_by(id=destination_id).first()
 
-        if not data or 'id' not in data: 
-            return jsonify({"code": 400, "message": "Invalid data"}), 400
-        
-        destination = Destination.query.filter_by(id=data['id']).first()
+        if not existing_destination:
+            return jsonify({"code": 409, "message": "Itinerary do not exists"}), 409
 
-        db.session.delete(Destination.id)
+        db.session.delete(existing_destination)
         db.session.commit()
 
-        return jsonify({"code": 200, "message": f"Destination ID: {destination.id} was deleted successfully"}), 200
+
+        # data = request.get_json()
+
+        # if not data or 'id' not in data: 
+        #     return jsonify({"code": 400, "message": "Invalid data"}), 400
+        
+        # destination = Destination.query.filter_by(id=data['id']).first()
+
+        # db.session.delete(destination.id)
+        # db.session.commit()
+
+        return jsonify({"code": 200, "message": f"Destination ID: {existing_destination.id} was deleted successfully"}), 200
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500

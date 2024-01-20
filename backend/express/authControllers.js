@@ -10,10 +10,21 @@ const executeQuery = async (query, params) => {
 export const register = async (req, res) => {
   try {
     const { username, first_name, last_name, password } = req.body;
+
+    const existingUser = await executeQuery(
+      "SELECT * FROM user WHERE username = ?",
+      [username]
+    );
+
+    if (existingUser.length > 0) {
+      return res.status(409).send("Username already taken.");
+    }
+
     await executeQuery(
       "INSERT INTO user (username, first_name, last_name, password) VALUES (?, ?, ?, ?)",
       [username, first_name, last_name, password]
     );
+
     res.status(201).send("User registered successfully.");
   } catch (error) {
     res.status(500).send("Error registering user: " + error.message);
