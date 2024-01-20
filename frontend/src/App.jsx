@@ -4,6 +4,8 @@ import Itinerary from "./pages/itinerary/itinerary";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Layout from "./components/Layout";
+import NewDestination from "./pages/itinerary/newdestination";
+import EditDestination from "./pages/itinerary/editdestination";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/itinerary" element={<Itinerary />} />
+        <Route path="/newdestination" element={<NewDestination />} />
+        <Route path="/editdestination" element={<EditDestination />} />
       </Route>
     </Routes>
   );

@@ -1,6 +1,9 @@
 import { useState } from "react";
-import StyledButton from "./StyledButton";
-import {FormControl} from "@mui/material";
+import { Link } from "react-router-dom";
+import { FormControl } from "@mui/material";
+
+import StyledButton from "../../components/StyledButton";
+import '../../assets/Login.css';
 
 const Destination = () => {
 

@@ -75,7 +75,6 @@ const itinerary = () => {
 
   return (
     <div>
-      <Navbar />
       <h1>Itinerary Page</h1>
       <Grid
         sx={{ mb: 1 }}
@@ -84,7 +83,7 @@ const itinerary = () => {
         justifyContent="space-between"
         justify="flex-end"
       >
-        <Button variant="contained">Create Destination</Button>
+        <Button variant="contained" href="/newdestination">Create Destination</Button>
         <TextField
           id="outlined-basic"
           label="Seach destination"
@@ -136,7 +135,6 @@ const itinerary = () => {
         </Table>
       </TableContainer>
       <p align="right">Total Budget:${totalCost}</p>
-      <Footer />
     </div>
   );
 };
