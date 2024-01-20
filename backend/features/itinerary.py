@@ -12,7 +12,7 @@ def get_all_itinerary():
         for itinerary in itinerarys:
             itinerary_obj = {
                 'id': itinerary.id,
-                'country_id': itinerary.country_id,
+                'country_id': "Singapore",
                 'user_id': itinerary.user_id,
                 'budget': itinerary.budget,
                 'title': itinerary.title,
@@ -28,21 +28,31 @@ def get_all_itinerary():
 @itinerary_bp.route('/get_itinary_by_user/<userID>', methods=['POST'])
 def get_itinerary_by_user(userID):
     try:
+        print("trying start")
         itinerarys = Itinerary.query.filter_by(user_id=userID).all()
+        print("itinerarys:", itinerarys)
         output_list = []
 
         for itinerary in itinerarys:
+            itinerary_output = {
+                "itinerary_id": itinerary.id,
+                "destinations": []
+            }
+            print("current itinerary:", itinerary)
             itineraryID = itinerary.id
-            results = db.itinerary_destination.filter(db.itinerary_destination.itinerary_id == itineraryID).distinct().all()
-            # results = db.session.query(ItineraryDestination.destination_id).filter(ItineraryDestination.itinerary_id == itineraryID).distinct().all()
+            print("itinerary id:", itineraryID )
+            # results = db.itinerary_destination.filter(db.itinerary_destination.itinerary_id == itineraryID).distinct().all()
+            results = db.session.query(ItineraryDestination.destination_id).filter(ItineraryDestination.itinerary_id == itineraryID).distinct().all()
             print(results)
             for each in results:
                 print('each:', each )
             destination_list = [result[0] for result in results]
 
             for oneDestination in destination_list:
+                print("starting oneDestination for loop:", oneDestination)
 
-                destination = Destination.query.filter_by(id=oneDestination.id).first()
+                destination = Destination.query.filter_by(id=oneDestination).first()
+                print("suspect error shudnt print here ")
 
                 destination_obj = {
                     "destination_id": destination.id,
@@ -52,8 +62,10 @@ def get_itinerary_by_user(userID):
                     "notes": destination.notes
                 }
 
-                output_list.append(destination_obj)
-            return jsonify({"code": 200, "data": output_list}), 200
+                itinerary_output['destinations'].append(destination_obj)
+
+            output_list.append(itinerary_output)
+        return jsonify({"code": 200, "data": output_list}), 200
 
     
     except Exception as e:
