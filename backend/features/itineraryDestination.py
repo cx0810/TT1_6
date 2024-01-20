@@ -3,6 +3,7 @@ from classes import db, Itinerary, ItineraryDestination, Country, Destination
 
 itinerary_bp = Blueprint('status_bp', __name__)
 
+#create
 @itinerary_bp.route('/itinerary-destinations', methods=['POST'])
 def add_itinerary_destination():
     data = request.get_json()
@@ -15,6 +16,7 @@ def add_itinerary_destination():
     
     return jsonify({'message': 'Itinerary destination added successfully'}), 201
 
+#read
 @itinerary_bp.route('/itinerary-destinations', methods=['GET'])
 def get_itinerary_destinations():
     results = db.session.query(
@@ -30,6 +32,7 @@ def get_itinerary_destinations():
     
     return jsonify(itinerary_destinations)
 
+#update
 @itinerary_bp.route('/itinerary-destinations/<int:id>', methods=['PUT'])
 def update_itinerary_destination(id):
     data = request.get_json()
@@ -40,6 +43,7 @@ def update_itinerary_destination(id):
     
     return jsonify({'message': 'Itinerary destination updated successfully'}), 200
 
+#delete
 @itinerary_bp.route('/itinerary-destinations/<int:id>', methods=['DELETE'])
 def delete_itinerary_destination(id):
     itinerary_destination = ItineraryDestination.query.get_or_404(id)
