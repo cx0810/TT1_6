@@ -5,6 +5,7 @@ import NewItinerary from "./pages/itinerary/NewItinerary";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Layout from "./components/Layout";
+import EditItinerary from "./pages/itinerary/EditItinerary";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/itinerary" element={<Itinerary />} />
         <Route path="/new-itinerary" element={<NewItinerary />} />
+        <Route path="/edit-itinerary" element={<EditItinerary />} />
       </Route>
     </Routes>
   );

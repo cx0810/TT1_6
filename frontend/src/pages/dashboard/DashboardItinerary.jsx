@@ -12,9 +12,11 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function DashboardItinerary({ itinerary }) {
 
+    const navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
 
     // Function to open the dialog
@@ -45,7 +47,9 @@ function DashboardItinerary({ itinerary }) {
 
     // Function to call when edit icon is clicked
     const handleEdit = () => {
-        onEdit(itinerary.id); // Or handle the edit logic directly here
+        //onEdit(itinerary.id); // Or handle the edit logic directly here
+        // route to edit page
+        navigate('/edit-itinerary')
     };
 
     return (
