@@ -58,7 +58,7 @@ const Navbar = () => {
           component="div"
           sx={{ flexGrow: 1, color: "white" }}
         >
-          <Link to="../dashboard" style={{ textDecoration: "none", color: "inherit" }}>
+          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
             {" "}
             {/* Add this Link wrapper */}
             T6 Itinerary Planner
