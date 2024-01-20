@@ -7,8 +7,7 @@ app = Flask(__name__)
 
 db = SQLAlchemy(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:3306/cpaos'
-
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:3306/techtrek24'
 
 class User(db.Model):
     def __init__(self, id, first_name, last_name, password, username):
@@ -27,7 +26,7 @@ class User(db.Model):
     username = db.Column(db.String(20))
 
 
-class Itinerary:
+class Itinerary(db.Model):
     def __init__(self, id, country_id, user_id, budget, title):
         self.id = id 
         self.country_id = country_id
@@ -46,7 +45,7 @@ class Itinerary:
     # ClinicianSchoolAppointments = db.relationship('ClinicianSchoolAppointment', backref='faculty', lazy=True, passive_deletes=True)
 
 
-class ItineraryDestination:
+class ItineraryDestination(db.Model):
     def __init__(self, id, itinerary_id, destination_id):
         self.id = id 
         self.itinerary_id = itinerary_id
@@ -57,7 +56,7 @@ class ItineraryDestination:
     destination_id = db.Column(db.Integer, db.ForeignKey('Destination.id'), nullable=False)
     
 
-class Country:
+class Country(db.Model):
     def __init__(self, id, name):
         self.id = id 
         self.name = name
@@ -68,7 +67,7 @@ class Country:
     
     name = db.Column(db.String(50))
 
-class Destination:
+class Destination(db.Model):
     def __init__(self, id, country_id, cost, name, notes):
         self.id = id 
         self.country_id = country_id
