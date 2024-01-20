@@ -1,6 +1,6 @@
 # group-6
 DBS SEED 2024
 
-frontend
+Frontend Installation
 - npm i
 - npm run dev
