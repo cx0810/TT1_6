@@ -85,6 +85,18 @@ const itinerary = () => {
       "Are you sure you want to delete this destination?"
     );
     if (!isConfirmed) return;
+    console.log(id);
+    // delete api
+    axios
+      .delete(`http://localhost:5000/delete_destination/${id}`)
+      .then(() => {
+        swalSuccess("Destination deleted successfully").then(() => {
+          window.location.reload();
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -133,13 +145,13 @@ const itinerary = () => {
                 <TableCell align="right">{destination.notes}</TableCell>
                 <TableCell align="right">
                   <div>
-                    <IconButton color="warning" aria-label="edit" onClick={href = "/editdestination"}>
+                    <IconButton color="warning" aria-label="edit">
                       <EditIcon />
                     </IconButton>
                     <IconButton
                       color="error"
                       aria-label="delete"
-                      onClick={handleDelete}
+                      onClick={() => handleDelete(destination.id)}
                     >
                       <DeleteIcon />
                     </IconButton>
