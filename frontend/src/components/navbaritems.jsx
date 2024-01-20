@@ -1,4 +1,3 @@
-import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 export const mainNavbarItems = [

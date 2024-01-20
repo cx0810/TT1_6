@@ -1,5 +1,5 @@
 import { pool } from "./database.js";
-import { comparePassword, hashPassword } from "./passwordUtils.js";
+import { comparePassword } from "./passwordUtils.js";
 import { createJWT } from "./tokenUtils.js";
 
 const executeQuery = async (query, params) => {
@@ -9,7 +9,6 @@ const executeQuery = async (query, params) => {
 
 export const register = async (req, res) => {
   try {
-    req.body.password = req.body.password;
     const { username, first_name, last_name, password } = req.body;
     await executeQuery(
       "INSERT INTO user (username, first_name, last_name, password) VALUES (?, ?, ?, ?)",
