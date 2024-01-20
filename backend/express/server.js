@@ -1,15 +1,18 @@
 import express from "express";
 import * as dotenv from "dotenv";
+import { pool } from "../express/database.js";
 //import authRouter from "./routes/authRouter.js";
 
 dotenv.config();
 const PORT = process.env.PORT || 3030;
 
 const app = express();
+const router = express.Router();
 
-// Middleware to parse incoming JSON bodies
+router.post("/register", register);
+router.post("/login", login);
+
 app.use(express.json());
-//app.use("/api/user", authRouter);
 
 // Start the server
 app.listen(PORT, () => {
