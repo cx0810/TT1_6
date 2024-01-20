@@ -11,6 +11,11 @@
   margin: auto;
 }
 
+.my-form {
+  display:flex;
+  flex-direction: column;
+}
+
 .login-input-text {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 22px;

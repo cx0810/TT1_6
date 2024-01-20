@@ -25,7 +25,7 @@ const EditItinerary = () => {
           justify="center"
           style={{ minHeight: "100vh" }}
         >
-          <h1>New Itinerary</h1>
+          <h1>Edit Itinerary</h1>
           <FormControl
             onSubmit={handleSubmit}
             style={{ margin: "20px auto", textAlign: "center" }}

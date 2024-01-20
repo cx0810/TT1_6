@@ -5,6 +5,7 @@ import {
   faTimes,
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import StyledButton from "../../components/StyledButton";
@@ -17,7 +18,6 @@ const PASSWORD_REGEX =
 const Register = () => {
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
-
   const [lastName, setLastName] = useState("");
 
   const [username, setUsername] = useState("");

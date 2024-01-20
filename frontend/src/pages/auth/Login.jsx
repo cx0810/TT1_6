@@ -31,6 +31,13 @@ const Login = () => {
   useEffect(() => {
     setPwd(pwd);
   }, [pwd]);
+  useEffect(() => {
+    setUsername(username);
+  }, [username])
+
+  useEffect(() => {
+    setPwd(pwd);
+  }, [pwd]);
 
   return (
     <>
@@ -62,6 +69,7 @@ const Login = () => {
           >
             Sign In
           </StyledButton>
+
         </form>
         <p>
           Need an account?
