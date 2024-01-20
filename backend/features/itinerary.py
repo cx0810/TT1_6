@@ -34,6 +34,10 @@ def get_itinerary_by_user(userID):
         output_list = []
 
         for itinerary in itinerarys:
+            itinerary_output = {
+                "itinerary_id": itinerary.id,
+                "destinations": []
+            }
             print("current itinerary:", itinerary)
             itineraryID = itinerary.id
             print("itinerary id:", itineraryID )
@@ -58,8 +62,10 @@ def get_itinerary_by_user(userID):
                     "notes": destination.notes
                 }
 
-                output_list.append(destination_obj)
-            return jsonify({"code": 200, "data": output_list}), 200
+                itinerary_output['destinations'].append(destination_obj)
+
+            output_list.append(itinerary_output)
+        return jsonify({"code": 200, "data": output_list}), 200
 
     
     except Exception as e:
