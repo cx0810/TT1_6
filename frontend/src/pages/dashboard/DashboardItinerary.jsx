@@ -91,7 +91,7 @@ function DashboardItinerary({ itinerary }) {
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        Are you sure you want to delete this claim?
+                        Are you sure you want to delete this itinerary?
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

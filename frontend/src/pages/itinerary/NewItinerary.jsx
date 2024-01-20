@@ -38,6 +38,10 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => {
     };
   }); // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591  
 
+  {/* return country id */}
+  {/* budget */}
+  {/* title */}
+  // user id
 const NewItinerary = () => {
 
   const [name, setname] = useState('');
@@ -47,6 +51,7 @@ const NewItinerary = () => {
   const handleSubmit = () => {
     return; }
   return (
+    // Title, Budget, Country, List of destination
     <Box margin={4}>
     <Breadcrumbs aria-label="breadcrumb">
         <StyledBreadcrumb
@@ -60,21 +65,21 @@ const NewItinerary = () => {
       <section>
         <h1>New Itinerary</h1>
         <FormControl onSubmit={handleSubmit}>
-          <label htmlFor="name">Destination Name:</label>
+          <label htmlFor="name">Title</label>
           <input
             type="text"
             id="name"
             onChange={(e) => setname(e.target.value)}
             value={name}
             required />
-          <label htmlFor="cost">Cost</label>
+          <label htmlFor="cost">Budget</label>
           <input
             type="int"
             id="cost"
             onChange={(e) => setcost(e.target.value)}
             value={cost}
             required />
-          <label htmlFor="lastName">Notes</label>
+          <label htmlFor="lastName">Country</label>
           <input
             type="text"
             id="notes"
@@ -82,6 +87,13 @@ const NewItinerary = () => {
             onChange={(e) => setnotes(e.target.value)}
             value={notes}
             required />
+            <label htmlFor="cost">List of Destination</label>
+            <input
+              type="int"
+              id="cost"
+              onChange={(e) => setcost(e.target.value)}
+              value={cost}
+              required />
           <Button>Create Itinerary</Button>
         </FormControl>
       </section>

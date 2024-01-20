@@ -127,7 +127,7 @@ const dashboard = () => {
               // startIcon={<AddIcon />} 
               onClick={() => {navigate('/new-itinerary');}}
           >
-              Create
+              Create Itinerary
           </Button>
       </Box>
       {/* <ClaimList
