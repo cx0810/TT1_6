@@ -1,6 +1,8 @@
 import { useState } from "react";
-import StyledButton from "./StyledButton";
-import {FormControl} from "@mui/material";
+import { Link } from "react-router-dom";
+import { FormControl } from "@mui/material";
+import { Button } from "@mui/material";
+import '../../assets/Form.css';
 
 const Destination = () => {
 
@@ -37,7 +39,7 @@ const Destination = () => {
             onChange={(e) => setnotes(e.target.value)}
             value={notes}
             required />
-          <StyledButton>Edit Destination</StyledButton>
+            <input type = 'editDestination' value = 'Edit Destination' className ='btn btn-block' />
         </FormControl>
       </section>
     </>

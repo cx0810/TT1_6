@@ -1,6 +1,8 @@
 import { useState } from "react";
-import StyledButton from "./StyledButton";
-import {FormControl} from "@mui/material";
+import { Link } from "react-router-dom";
+import { FormControl } from "@mui/material";
+import { Button } from "@mui/material";
+import '../../assets/Form.css';
 
 const Destination = () => {
 
@@ -13,7 +15,7 @@ const Destination = () => {
   return (
     <>
       <section>
-        <h1>Edit Destination</h1>
+        <h1>New Destination</h1>
         <FormControl onSubmit={handleSubmit}>
           <label htmlFor="name">Destination Name:</label>
           <input
@@ -37,7 +39,7 @@ const Destination = () => {
             onChange={(e) => setnotes(e.target.value)}
             value={notes}
             required />
-          <StyledButton>Edit Destination</StyledButton>
+          <input type = 'newDestination' value = 'New Destination' className ='btn btn-block' />
         </FormControl>
       </section>
     </>
