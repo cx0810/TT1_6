@@ -3,11 +3,14 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 import platform
 
-app = Flask(__name__)
+# app = Flask(__name__) 
 
-db = SQLAlchemy(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:3306/cpaos'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/tt16'
+# db = SQLAlchemy(app)
+db = SQLAlchemy()
+
+
 
 
 class User(db.Model):
@@ -38,8 +41,8 @@ class Itinerary:
     id = db.Column(db.Integer, primary_key=True)
     Itinerary_id = db.relationship('ItineraryDestination', backref='Itinerary', lazy=True, passive_deletes=True)
 
-    country_id = db.Column(db.Integer, db.ForeignKey('Country.id'), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
+    country_id = db.Column(db.Integer, db.ForeignKey('country.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     budget = db.Column(db.Float)
     title = db.Column(db.String(100))
 

@@ -16,8 +16,8 @@
 
 
 -- Dumping database structure for techtrek24
-CREATE DATABASE IF NOT EXISTS `techtrek24` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
-USE `techtrek24`;
+CREATE DATABASE IF NOT EXISTS `tt16` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `tt16`;
 
 -- Dumping structure for table techtrek24.country
 CREATE TABLE IF NOT EXISTS `country` (
@@ -49,6 +49,23 @@ INSERT INTO `destination` (`id`, `country_id`, `cost`, `name`, `notes`) VALUES
 	(3, 1, 40, 'Sentosa Island', 'Fun-filled island resort with beaches, theme parks, and various attractions. Open daily from 10 AM to 7 PM.'),
 	(4, 1, 60, 'Universal Studios Singapore', 'Amusement park with movie-themed rides and entertainment. Open daily from 10 AM to 7 PM.'),
 	(5, 1, 35, 'Singapore Zoo', 'Award-winning zoo showcasing diverse wildlife species. Open daily from 8:30 AM to 6 PM.');
+
+
+-- Dumping structure for table techtrek24.user
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  KEY `PK` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table techtrek24.user: ~3 rows (approximately)
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `password`, `username`) VALUES
+	(1, 'John', 'Doe', 'johndoe123', 'johndoe'),
+	(2, 'Emily', 'Smith', 'emilysmith456', 'emilysmith'),
+	(3, 'David', 'Brown', 'davidbrown789', 'davidbrown');
 
 -- Dumping structure for table techtrek24.itinerary
 CREATE TABLE IF NOT EXISTS `itinerary` (
@@ -91,21 +108,6 @@ INSERT INTO `itinerary_destination` (`id`, `destination_id`, `itineray_id`) VALU
 	(5, 5, 2),
 	(6, 2, 3);
 
--- Dumping structure for table techtrek24.user
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `username` varchar(20) NOT NULL,
-  KEY `PK` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Dumping data for table techtrek24.user: ~3 rows (approximately)
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `password`, `username`) VALUES
-	(1, 'John', 'Doe', 'johndoe123', 'johndoe'),
-	(2, 'Emily', 'Smith', 'emilysmith456', 'emilysmith'),
-	(3, 'David', 'Brown', 'davidbrown789', 'davidbrown');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
