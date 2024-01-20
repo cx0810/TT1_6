@@ -14,7 +14,7 @@ def get_destination(destination_id):
         
         destination_obj = {
             'id': destination.id,
-            'country_id': destination.country_id,
+            'country_id': "Singapore",
             'cost': destination.cost,
             'name': destination.name,
             'notes': destination.notes
@@ -35,7 +35,7 @@ def get_destinations():
         for destination in destinations:
             destination_obj = {
                 'id': destination.id,
-                'country_id': destination.country_id,
+                'country_id': "Singapore",
                 'cost': destination.cost,
                 'name': destination.name,
                 'notes': destination.notes

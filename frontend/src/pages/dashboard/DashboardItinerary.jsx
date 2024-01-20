@@ -13,6 +13,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function DashboardItinerary({ itinerary }) {
 
@@ -55,56 +56,59 @@ function DashboardItinerary({ itinerary }) {
     };
 
     return (
-        <Card sx={{ marginBottom: "20px", position: 'relative' }}>
-            <CardContent>
-                <Typography variant="h5" component="div">
-                    {itinerary.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    
-                    Budget: ${itinerary.budget} <br />
-                    
-                    {/* Country: {itinerary.Country} <br /> */}
-                    {/* List of destinations:  {itinerary.Destinations} */}
-                    List of destinations:  {itinerary.country_id}
-                </Typography>
-            </CardContent>
-            <IconButton 
-                aria-label="delete" 
-                onClick={handleDelete} 
-                sx={{ position: 'absolute', top: '10px', right: '10px' }}
-            >
-                <DeleteIcon />
-            </IconButton>
-            <IconButton 
-                aria-label="edit" 
-                onClick={handleEdit} 
-                sx={{ position: 'absolute', top: '10px', right: '50px' }} // Adjust the position as needed
-            >
-                <EditIcon />
-            </IconButton>
-            <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-            >
-                <DialogTitle id="alert-dialog-title">
-                    {"Confirm Deletion"}
-                </DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        Are you sure you want to delete this itinerary?
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleConfirmDelete} autoFocus>
-                        Confirm Delete
-                    </Button>
-                </DialogActions>
-            </Dialog>
-        </Card>
+        <Link to={`/destination/${itinerary.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Card sx={{ marginBottom: "20px", position: 'relative' }}>
+
+                <CardContent>
+                    <Typography variant="h5" component="div">
+                        {itinerary.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        
+                        Budget: ${itinerary.budget} <br />
+                        
+                        {/* Country: {itinerary.Country} <br /> */}
+                        {/* List of destinations:  {itinerary.Destinations} */}
+                        List of destinations:  {itinerary.country_id}
+                    </Typography>
+                </CardContent>
+                <IconButton 
+                    aria-label="delete" 
+                    onClick={handleDelete} 
+                    sx={{ position: 'absolute', top: '10px', right: '10px' }}
+                >
+                    <DeleteIcon />
+                </IconButton>
+                <IconButton 
+                    aria-label="edit" 
+                    onClick={handleEdit} 
+                    sx={{ position: 'absolute', top: '10px', right: '50px' }} // Adjust the position as needed
+                >
+                    <EditIcon />
+                </IconButton>
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">
+                        {"Confirm Deletion"}
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Are you sure you want to delete this itinerary?
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose}>Cancel</Button>
+                        <Button onClick={handleConfirmDelete} autoFocus>
+                            Confirm Delete
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </Card>
+        </Link>
     );
 }
 
