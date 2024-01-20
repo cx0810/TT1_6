@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { FormControl } from "@mui/material";
 import { Button } from "@mui/material";
+import { FormControl } from "@mui/material";
+
 import '../../assets/Form.css';
 
 const Destination = () => {
@@ -15,7 +16,7 @@ const Destination = () => {
 
   return (
     <>
-      <section>
+      <div classname="formSectionCSS">
         <h1>New Destination</h1>
         <FormControl onSubmit={handleSubmit} style={{ margin: "20px auto", textAlign: "center" }}>
           <label htmlFor="name">Destination Name:</label>
@@ -50,7 +51,7 @@ const Destination = () => {
             New Destination
           </Button>
         </FormControl>
-      </section>
+      </div>
     </>
   );
 };

@@ -1,6 +1,5 @@
-.section {
-    justify-content: center;
-    margin:auto;
+.formSectionCSS {
+    margin:50px;
     max-width: 420px;
     display: flex;
     width:100%;
@@ -13,7 +12,7 @@
   }
   
   .form-control label {
-    display: block;
+    display: flex;
     text-align: center; /* Center label text */
     justify-content: center;
   }
