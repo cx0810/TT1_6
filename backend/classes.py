@@ -3,14 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 import platform
 
-# app = Flask(__name__) 
+app = Flask(__name__) 
 
-
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/tt16'
-# db = SQLAlchemy(app)
-db = SQLAlchemy()
-
-
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:3306/tecktrek24'
+db = SQLAlchemy(app)
 
 class User(db.Model):
     def __init__(self, id, first_name, last_name, password, username):
@@ -49,26 +45,29 @@ class Itinerary(db.Model):
 
 
 class ItineraryDestination(db.Model):
-    def __init__(self, id, itinerary_id, destination_id):
+    # def __init__(self, id, itinerary_id, destination_id):
+    def __init__(self, id, destination_id, itinerary_id):
+
         self.id = id 
         self.itinerary_id = itinerary_id
         self.destination_id = destination_id
 
     id = db.Column(db.Integer, primary_key=True)
-    itenarary_id = db.Column(db.Integer, db.ForeignKey('Itenarary.id'), nullable=False)
-    destination_id = db.Column(db.Integer, db.ForeignKey('Destination.id'), nullable=False)
+    itinerary_id = db.Column(db.Integer, db.ForeignKey('itinerary.id'), nullable=False)
+    destination_id = db.Column(db.Integer, db.ForeignKey('destination.id'), nullable=False)
     
 
 class Country(db.Model):
     def __init__(self, id, name):
         self.id = id 
         self.name = name
+   
 
     id = db.Column(db.Integer, primary_key = True)
-    country_id = db.relationship('Itinerary', backref='Country', lazy=True, passive_deletes=True)
-    country_id = db.relationship('Itinerary', backref='Destination', lazy=True, passive_deletes=True)
-    
     name = db.Column(db.String(50))
+    country_id = db.relationship('Itinerary', backref='country', lazy=True, passive_deletes=True)
+    destination_id = db.relationship('Destination', backref='country', lazy=True, passive_deletes=True)
+    
 
 class Destination(db.Model):
     def __init__(self, id, country_id, cost, name, notes):
@@ -79,11 +78,11 @@ class Destination(db.Model):
         self.notes = notes
     
     id = db.Column(db.Integer, primary_key = True)
-    country_id = db.Column(db.Integer, db.ForeignKey('Country.id'), nullable=False)
-    destination_id = db.relationship('ItineraryDestination', backref='Destination', lazy=True, passive_deletes=True)
+    country_id = db.Column(db.Integer, db.ForeignKey('country.id'), nullable=False)
+    destination_id = db.relationship('ItineraryDestination', backref='destination', lazy=True, passive_deletes=True)
     cost = db.Column(db.Float)
     name = db.Column(db.String(50))
     notes = db.Column(db.Text)
 
- 
+
 
