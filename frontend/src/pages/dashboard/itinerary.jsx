@@ -13,6 +13,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Navbar from '../../components/Navbar/Navbar'
+import Footer from '../../components/Footer'
 
 const itinerary = () => {
   const rows = [
@@ -91,6 +92,7 @@ const itinerary = () => {
         </Table>
       </TableContainer>
       <p align="right">Total Budget: </p>
+      <Footer />
     </div>
   );
 };
