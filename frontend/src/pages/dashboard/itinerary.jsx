@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -12,10 +12,16 @@ import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
-import Navbar from '../../components/Navbar/Navbar'
-import Footer from '../../components/Footer'
+import { swalConfirmation, swalSuccess } from "../../utils/sweet-alert.utils";
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer";
 
 const itinerary = () => {
+  const [totalCost, setTotalCost] = useState(0);
+  const [filteredDestinations, setFilteredDestinations] = useState([]);
+  const [openDeleteDestinationModal, setOpenDeleteDestinationModal] =
+    useState(false);
+
   const rows = [
     {
       destination: "test",
@@ -34,6 +40,39 @@ const itinerary = () => {
     },
   ];
 
+  useEffect(() => {
+    // Calculate total cost when rows change
+    const calculateTotalCost = () => {
+      let sum = 0;
+      for (const row of rows) {
+        sum += row.cost;
+      }
+      setTotalCost(sum);
+    };
+
+    calculateTotalCost();
+  }, [rows]);
+
+  useEffect(() => {
+    setFilteredDestinations(rows);
+  }, []);
+
+  const handleFilter = (e) => {
+    const { value } = e.target;
+    const filteredDestinations = rows.filter((row) =>
+      row.destination.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredDestinations(filteredDestinations);
+  };
+
+  const handleDelete = async (id) => {
+    setOpenDeleteDestinationModal(true);
+    const { isConfirmed } = await swalConfirmation(
+      "Are you sure you want to delete this destination?"
+    );
+    if (!isConfirmed) return;
+  };
+
   return (
     <div>
       <Navbar />
@@ -51,6 +90,7 @@ const itinerary = () => {
           label="Seach destination"
           variant="outlined"
           align="left"
+          onChange={handleFilter}
         />
       </Grid>
       <TableContainer component={Paper}>
@@ -65,7 +105,7 @@ const itinerary = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, index) => (
+            {filteredDestinations.map((row, index) => (
               <TableRow
                 key={row.name}
                 // sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -81,7 +121,11 @@ const itinerary = () => {
                     <IconButton color="warning" aria-label="edit">
                       <EditIcon />
                     </IconButton>
-                    <IconButton color="error" aria-label="delete">
+                    <IconButton
+                      color="error"
+                      aria-label="delete"
+                      onClick={handleDelete}
+                    >
                       <DeleteIcon />
                     </IconButton>
                   </div>
@@ -91,7 +135,7 @@ const itinerary = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <p align="right">Total Budget: </p>
+      <p align="right">Total Budget:${totalCost}</p>
       <Footer />
     </div>
   );
