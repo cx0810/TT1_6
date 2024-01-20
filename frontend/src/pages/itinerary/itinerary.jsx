@@ -133,7 +133,7 @@ const itinerary = () => {
                 <TableCell align="right">{destination.notes}</TableCell>
                 <TableCell align="right">
                   <div>
-                    <IconButton color="warning" aria-label="edit">
+                    <IconButton color="warning" aria-label="edit" onClick={href = "/editdestination"}>
                       <EditIcon />
                     </IconButton>
                     <IconButton
