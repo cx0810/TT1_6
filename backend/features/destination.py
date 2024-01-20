@@ -1,45 +1,11 @@
 from flask import Blueprint, jsonify, request
-from classes import db, Itinerary, ItineraryDestination, Destination
+from classes import db, Destination
 
 destination_bp = Blueprint('destination_bp', __name__)
 
 ## retrieve all
 ## edit one
 ## delete one
-
-
-@destination_bp.route('/get_destination_by_itinerary/<itinerary_id>', methods=['POST'])
-def get_destination_by_itinerary(itinerary_id):
-    try:
-        output_list = []
-        # results = db.itinerary_destination.filter(db.itinerary_destination.itinerary_id == itineraryID).distinct().all()
-        results = db.session.query(ItineraryDestination.destination_id).filter(ItineraryDestination.itinerary_id == itinerary_id).distinct().all()
-
-        destination_list = [result[0] for result in results]
-
-        for oneDestination in destination_list:
-            print("starting oneDestination for loop:", oneDestination)
-
-            destination = Destination.query.filter_by(id=oneDestination).first()
-            print("suspect error shudnt print here ")
-
-            destination_obj = {
-                "destination_id": destination.id,
-                "country_id": destination.country_id,
-                "cost": destination.cost,
-                "name": destination.name,
-                "notes": destination.notes
-            }
-
-            output_list.append(destination_obj)
-
-        return jsonify({"code": 200, "data": output_list}), 200
-
-    
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
 
 @destination_bp.route('/get_destination/<destination_id>', methods=['GET'])
 def get_destination(destination_id):
@@ -48,7 +14,7 @@ def get_destination(destination_id):
         
         destination_obj = {
             'id': destination.id,
-            'country_id': "Singapore",
+            'country_id': destination.country_id,
             'cost': destination.cost,
             'name': destination.name,
             'notes': destination.notes
@@ -69,7 +35,7 @@ def get_destinations():
         for destination in destinations:
             destination_obj = {
                 'id': destination.id,
-                'country_id': "Singapore",
+                'country_id': destination.country_id,
                 'cost': destination.cost,
                 'name': destination.name,
                 'notes': destination.notes
