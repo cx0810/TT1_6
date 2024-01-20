@@ -4,8 +4,8 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormControl} from "@mui/material";
 
-import StyledButton from "./StyledButton";
-import '../assets/Login.css';
+import StyledButton from "../../components/StyledButton";
+import '../../assets/Login.css';
 
 const USERNAME_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
