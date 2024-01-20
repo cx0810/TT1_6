@@ -16,11 +16,12 @@ const Login = () => {
 
   return (
     <>
-      <section>
+      <div className="login-register">
         <h1>Sign In</h1>
         <FormControl onSubmit={handleSubmit}>
           <label htmlFor="username">Username:</label>
           <input
+            className="login-input-text"
             type="text"
             id="username"
             autoComplete="off"
@@ -30,6 +31,7 @@ const Login = () => {
           />
           <label htmlFor="password">Password:</label>
           <input
+            className="login-input-text"
             type="password"
             id="password"
             onChange={(e) => setPwd(e.target.value)}
@@ -42,11 +44,9 @@ const Login = () => {
         </FormControl>
         <p>
           Need an account?<br />
-          <span className="">
-            <Link to="/register">Sign Up</Link>
-          </span>
+          <Link to="/register">Sign Up</Link>
         </p>
-      </section >
+      </div >
     </>
   )
 }
