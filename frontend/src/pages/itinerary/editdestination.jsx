@@ -39,7 +39,7 @@ const Destination = () => {
             onChange={(e) => setnotes(e.target.value)}
             value={notes}
             required />
-          <btn>Edit Destination</btn>
+            <input type = 'editDestination' value = 'Edit Destination' className ='btn btn-block' />
         </FormControl>
       </section>
     </>

@@ -15,7 +15,7 @@ const Destination = () => {
   return (
     <>
       <section>
-        <h1>Edit Destination</h1>
+        <h1>New Destination</h1>
         <FormControl onSubmit={handleSubmit}>
           <label htmlFor="name">Destination Name:</label>
           <input
@@ -39,7 +39,7 @@ const Destination = () => {
             onChange={(e) => setnotes(e.target.value)}
             value={notes}
             required />
-          <btn>Edit Destination</btn>
+          <input type = 'newDestination' value = 'New Destination' className ='btn btn-block' />
         </FormControl>
       </section>
     </>
