@@ -17,7 +17,7 @@ export const register = async (req, res) => {
     );
 
     if (existingUser.length > 0) {
-      return res.status(409).send("Username already taken.");
+      return res.status(409).json({ message: "Username already taken." });
     }
 
     await executeQuery(
@@ -25,9 +25,11 @@ export const register = async (req, res) => {
       [username, first_name, last_name, password]
     );
 
-    res.status(201).send("User registered successfully.");
+    res.status(201).json({ message: "User registered successfully." });
   } catch (error) {
-    res.status(500).send("Error registering user: " + error.message);
+    res
+      .status(500)
+      .json({ message: "Error registering user: " + error.message });
   }
 };
 
@@ -39,7 +41,6 @@ export const login = async (req, res) => {
     ]);
 
     if (user) {
-      // User exists, compare passwords
       if (comparePassword(password, user.password)) {
         const token = createJWT({ username: user.username });
         const oneDay = 1000 * 60 * 60 * 24;
@@ -48,16 +49,17 @@ export const login = async (req, res) => {
           expires: new Date(Date.now() + oneDay),
           secure: process.env.NODE_ENV === "production",
         });
-        res.status(200).send("Login successful.");
+        res.status(200).json({ message: "Login successful." });
       } else {
-        res.status(401).send("Invalid credentials.");
+        res.status(401).json({ message: "Invalid credentials." });
       }
     } else {
-      // User not found
-      res.status(401).send("User not found or invalid credentials.");
+      res
+        .status(401)
+        .json({ message: "User not found or invalid credentials." });
     }
   } catch (error) {
-    res.status(500).send("Error during login: " + error.message);
+    res.status(500).json({ message: "Error during login: " + error.message });
   }
 };
 
@@ -65,12 +67,11 @@ export const logout = async (req, res) => {
   try {
     res.cookie("token", "", {
       httpOnly: true,
-      expires: new Date(0), // Set it to a past date to expire it immediately
+      expires: new Date(0),
       secure: process.env.NODE_ENV === "production",
     });
-
-    res.status(200).send("Logout successful.");
+    res.status(200).json({ message: "Logout successful." });
   } catch (error) {
-    res.status(500).send("Error during logout: " + error.message);
+    res.status(500).json({ message: "Error during logout: " + error.message });
   }
 };
