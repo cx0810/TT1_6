@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { FormControl } from "@mui/material";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import StyledButton from "../../components/StyledButton";
 import '../../assets/Login.css';
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState('');
   const [pwd, setPwd] = useState('');
 
@@ -20,11 +21,16 @@ const Login = () => {
     })
     const data = await res.json()
     console.log("data: ", data);
-
-    // setLoggedIn(true)
-    // console.log("logged in: ", loggedIn)
-    return data;
+    navigate('/dashboard');
   }
+
+  useEffect(() => {
+    setUsername(username);
+  }, [username])
+
+  useEffect(() => {
+    setPwd(pwd);
+  }, [pwd]);
 
   return (
     <>
@@ -51,7 +57,7 @@ const Login = () => {
             required
           />
           <StyledButton
-            disabled={username === '' || pwd === '' ? true : false}
+            type="submit" disabled={username === '' || pwd === '' ? true : false}
           >Sign In</StyledButton>
         </form>
         <p>
