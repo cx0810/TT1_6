@@ -11,7 +11,7 @@ function Copyright() {
     <Typography variant="body2" color="text.secondary">
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        TT6
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -19,7 +19,6 @@ function Copyright() {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 const Footer = () => {
@@ -29,24 +28,25 @@ const Footer = () => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          minHeight: 'auto',
+          minHeight: '30vh', // Set the minimum height to 100% of the viewport height
         }}
       >
         <CssBaseline />
         <Box
           component="footer"
           sx={{
+            mt: 'auto', // Auto margin-top to push the footer to the bottom
             py: 2,
             px: 2,
-            mt: 'auto',
             backgroundColor: (theme) =>
               theme.palette.mode === 'light'
                 ? theme.palette.grey[200]
                 : theme.palette.grey[800],
-          }} >
+          }}
+        >
           <Container maxWidth="sm">
             <Typography variant="body1">
-                DBS Techtrek #1
+              DBS Techtrek #1 Table 6
             </Typography>
             <Copyright />
           </Container>
@@ -56,4 +56,4 @@ const Footer = () => {
   );
 }
 
-export default Footer
+export default Footer;

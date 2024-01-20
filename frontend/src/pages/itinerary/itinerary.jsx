@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -13,52 +14,68 @@ import EditIcon from "@mui/icons-material/Edit";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import { swalConfirmation, swalSuccess } from "../../utils/sweet-alert.utils";
+import { Link } from "react-router-dom";
 
 const itinerary = () => {
+  const [destinations, setDestinations] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
   const [filteredDestinations, setFilteredDestinations] = useState([]);
   const [openDeleteDestinationModal, setOpenDeleteDestinationModal] =
     useState(false);
 
-  const rows = [
-    {
-      destination: "test",
-      cost: 1,
-      notes: "test",
-    },
-    {
-      destination: "test",
-      cost: 1,
-      notes: "test",
-    },
-    {
-      destination: "test",
-      cost: 1,
-      notes: "test",
-    },
-  ];
+  useEffect(() => {
+    // setLoading(true);
+    axios
+      .get(`http://localhost:5000/get_destinations`)
+      .then((response) => {
+        setDestinations(response.data.data);
+        // setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        // setLoading(false);
+      });
+  }, []);
+
+  // const rows = [
+  //   {
+  //     destination: "test",
+  //     cost: 1,
+  //     notes: "test",
+  //   },
+  //   {
+  //     destination: "test",
+  //     cost: 1,
+  //     notes: "test",
+  //   },
+  //   {
+  //     destination: "test",
+  //     cost: 1,
+  //     notes: "test",
+  //   },
+  // ];
 
   useEffect(() => {
     // Calculate total cost when rows change
     const calculateTotalCost = () => {
       let sum = 0;
-      for (const row of rows) {
+      for (const row of filteredDestinations) {
         sum += row.cost;
       }
       setTotalCost(sum);
     };
 
     calculateTotalCost();
-  }, [rows]);
+  }, [filteredDestinations]);
 
   useEffect(() => {
-    setFilteredDestinations(rows);
-  }, []);
+    setFilteredDestinations(destinations);
+  }, [destinations]);
 
   const handleFilter = (e) => {
     const { value } = e.target;
-    const filteredDestinations = rows.filter((row) =>
-      row.destination.toLowerCase().includes(value.toLowerCase())
+    const filteredDestinations = destinations.filter((row) =>
+      row.name.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredDestinations(filteredDestinations);
   };
@@ -81,7 +98,9 @@ const itinerary = () => {
         justifyContent="space-between"
         justify="flex-end"
       >
-        <Button variant="contained" href="/newdestination">Create Destination</Button>
+        <Button variant="contained" href="/newdestination">
+          Create Destination
+        </Button>
         <TextField
           id="outlined-basic"
           label="Seach destination"
@@ -102,17 +121,17 @@ const itinerary = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredDestinations.map((row, index) => (
+            {filteredDestinations.map((destination) => (
               <TableRow
-                key={row.name}
+                key={destination.id}
                 // sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {index + 1}
+                  {destination.id}
                 </TableCell>
-                <TableCell align="left">{row.destination}</TableCell>
-                <TableCell align="right">{row.cost}</TableCell>
-                <TableCell align="right">{row.notes}</TableCell>
+                <TableCell align="left">{destination.name}</TableCell>
+                <TableCell align="right">{destination.cost}</TableCell>
+                <TableCell align="right">{destination.notes}</TableCell>
                 <TableCell align="right">
                   <div>
                     <IconButton color="warning" aria-label="edit">
