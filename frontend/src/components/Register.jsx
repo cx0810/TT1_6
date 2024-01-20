@@ -20,7 +20,6 @@ const Register = () => {
     const [pwd, setPwd] = useState('');
     const [validPwd, setValidPwd] = useState(false);
 
-
     // TODO: create handle submit function
     const handleSubmit = () => {
         return;
@@ -28,14 +27,11 @@ const Register = () => {
 
     useEffect(() => {
         const regexResult = USERNAME_REGEX.test(username);
-
         setValidUsername(regexResult);
     }, [username])
 
     useEffect(() => {
         const regexResult = PASSWORD_REGEX.test(pwd);
-        console.log(regexResult);
-        console.log(pwd);
         setValidPwd(regexResult);
     }, [pwd]);
 
@@ -107,7 +103,8 @@ const Register = () => {
                         Must include uppercase and lowercase letters, a number and a special character.<br />
                         Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
                     </p>
-                    <StyledButton>Sign Up</StyledButton>
+                    <StyledButton disabled={firstName === '' || lastName=== '' || !validUsername || !validPwd ? true : false}
+                    >Sign Up</StyledButton>
                 </FormControl>
                 <p>
                     Have an existing account?<br />

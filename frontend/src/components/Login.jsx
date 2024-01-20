@@ -35,7 +35,9 @@ const Login = () => {
             value={pwd}
             required
           />
-          <StyledButton>Sign In</StyledButton>
+          <StyledButton
+            disabled={username === '' || pwd === '' ? true : false}
+          >Sign In</StyledButton>
         </FormControl>
         <p>
           Need an account?<br />
@@ -43,7 +45,7 @@ const Login = () => {
             <Link to="/register">Sign Up</Link>
           </span>
         </p>
-      </section>
+      </section >
     </>
   )
 }
