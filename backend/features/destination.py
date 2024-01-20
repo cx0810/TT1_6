@@ -7,7 +7,6 @@ destination_bp = Blueprint('destination_bp', __name__)
 ## edit one
 ## delete one
 
-
 @destination_bp.route('/get_destination_by_itinerary/<itinerary_id>', methods=['POST'])
 def get_destination_by_itinerary(itinerary_id):
     try:
@@ -38,7 +37,6 @@ def get_destination_by_itinerary(itinerary_id):
     
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
 
 
 @destination_bp.route('/get_destination/<destination_id>', methods=['GET'])

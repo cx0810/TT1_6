@@ -44,10 +44,15 @@ def update_itinerary_destination(id):
     return jsonify({'message': 'Itinerary destination updated successfully'}), 200
 
 #delete
-@itinerary_destinations_bp.route('/itinerary-destinations/<int:id>', methods=['DELETE'])
-def delete_itinerary_destination(id):
-    itinerary_destination = ItineraryDestination.query.get_or_404(id)
-    db.session.delete(itinerary_destination)
+@itinerary_destinations_bp.route('/removeItineraryDestinations/<itineraryID>/<destinationID>', methods=['PUT'])
+def delete_itinerary_destination(itineraryID, destinationID):
+
+    delItineraryDestination = ItineraryDestination.query.filter_by(itinerary_id = itineraryID, destination_id = destinationID).first()
+
+    if not delItineraryDestination:
+        return jsonify({'code': 404, 'message': 'Itinerary destination not found'}), 404
+    
+    db.session.delete(delItineraryDestination)
     db.session.commit()
     
     return jsonify({'message': 'Itinerary destination deleted successfully'}), 200
