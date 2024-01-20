@@ -11,13 +11,14 @@ import EditDestination from "./pages/itinerary/editdestination";
 
 function App() {
   return (
-    <Routes >
+    <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/itinerary" element={<Itinerary />} />
+        <Route path="/itinerary/:id" element={<Itinerary />} />
+        {/* <Route path="/itinerary" element={<Itinerary />} /> */}
         <Route path="/new-itinerary" element={<NewItinerary />} />
         <Route path="/edit-itinerary" element={<EditItinerary />} />
         <Route path="/newdestination" element={<NewDestination />} />

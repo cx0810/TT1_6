@@ -1,102 +1,90 @@
 import { useState } from "react";
-// import StyledButton from "./StyledButton";
-import {
-    Button,
-    Box,
-    TextField,
-    MenuItem,
-    Grid,
-    Input,
-    CircularProgress,
-    IconButton,
-    Typography,
-    FormControl,
-    Select,
-    InputLabel,
-  } from '@mui/material';
-import { emphasize, styled } from '@mui/material/styles';
-import Chip from '@mui/material/Chip';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
+import { Button } from "@mui/material";
+import { FormControl } from "@mui/material";
+import Grid from "@mui/material/Grid";
 
-const StyledBreadcrumb = styled(Chip)(({ theme }) => {
-    const backgroundColor =
-      theme.palette.mode === 'light'
-        ? theme.palette.grey[100]
-        : theme.palette.grey[800];
-    return {
-      backgroundColor,
-      height: theme.spacing(3),
-      color: theme.palette.text.primary,
-      fontWeight: theme.typography.fontWeightRegular,
-      '&:hover, &:focus': {
-        backgroundColor: emphasize(backgroundColor, 0.06),
-      },
-      '&:active': {
-        boxShadow: theme.shadows[1],
-        backgroundColor: emphasize(backgroundColor, 0.12),
-      },
-    };
-  }); // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591  
+import "../../assets/Form.css";
 
-  {/* return country id */}
-  {/* budget */}
-  {/* title */}
-  // user id
 const EditItinerary = () => {
-
-  const [name, setname] = useState('');
-  const [cost, setcost] = useState('');
-  const [notes, setnotes] = useState('');
+  const [title, settitle] = useState("");
+  const [budget, setbudget] = useState("");
+  const [country, setcountry] = useState("");
 
   const handleSubmit = () => {
-    return; }
+    return;
+  };
+
   return (
-    <Box margin={4}>
-    <Breadcrumbs aria-label="breadcrumb">
-        <StyledBreadcrumb
-        component="a"
-        href="/dashboard"
-        label="Dashboard"
-        sx={{ cursor: 'pointer' }}
-        />
-        <StyledBreadcrumb component="a" href="#" label="Edit Itinerary" />
-    </Breadcrumbs>
-      <section>
-        <h1>Edit Itinerary</h1>
-        <FormControl onSubmit={handleSubmit}>
-          <label htmlFor="name">Title</label>
-          <input
-            type="text"
-            id="name"
-            onChange={(e) => setname(e.target.value)}
-            value={name}
-            required />
-          <label htmlFor="cost">Budget</label>
-          <input
-            type="int"
-            id="cost"
-            onChange={(e) => setcost(e.target.value)}
-            value={cost}
-            required />
-          <label htmlFor="lastName">Country</label>
-          <input
-            type="text"
-            id="notes"
-            autoComplete="off"
-            onChange={(e) => setnotes(e.target.value)}
-            value={notes}
-            required />
-            <label htmlFor="cost">List of Destination</label>
+    <>
+      <div classname="formSectionCSS">
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justify="center"
+          style={{ minHeight: "100vh" }}
+        >
+          <h1>Edit Itinerary</h1>
+          <FormControl
+            onSubmit={handleSubmit}
+            style={{ margin: "20px auto", textAlign: "center" }}
+          >
+            <label htmlFor="title">Title:</label>
+            <input
+              type="text"
+              id="title"
+              onChange={(e) => settitle(e.target.value)}
+              value={title}
+              required
+              style={{
+                width: "100%",
+                height: "40px",
+                margin: "5px auto",
+                padding: "3px 7px",
+                fontSize: "17px",
+                textAlign: "center",
+              }}
+            />
+            <label htmlFor="budget">Budget</label>
             <input
               type="int"
-              id="cost"
-              onChange={(e) => setcost(e.target.value)}
-              value={cost}
-              required />
-          <Button>Edit Itinerary</Button>
-        </FormControl>
-      </section>
-    </Box>
-  )
-}
-export default EditItinerary
+              id="budget"
+              onChange={(e) => setbudget(e.target.value)}
+              value={budget}
+              required
+              style={{
+                width: "100%",
+                height: "40px",
+                margin: "5px auto",
+                padding: "3px 7px",
+                fontSize: "17px",
+                textAlign: "center",
+              }}
+            />   
+            <label htmlFor="budget">Country</label>
+            <input
+              type="text"
+              id="country"
+              onChange={(e) => setcountry(e.target.value)}
+              value={country}
+              required
+              style={{
+                width: "100%",
+                height: "40px",
+                margin: "5px auto",
+                padding: "3px 7px",
+                fontSize: "17px",
+                textAlign: "center",
+              }}
+            />   
+            <Button type="submit" variant="contained" className="btn btn-block">
+              Edit Itinerary
+            </Button>
+          </FormControl>
+        </Grid>
+      </div>
+    </>
+  );
+};
+export default EditItinerary;

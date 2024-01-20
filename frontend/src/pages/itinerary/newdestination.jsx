@@ -4,19 +4,37 @@ import { FormControl } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
 import "../../assets/Form.css";
+import { useEffect } from "react";
+import axios from "axios";
 
 const Destination = () => {
+  const [country, setcountry] = useState("");
   const [name, setname] = useState("");
   const [cost, setcost] = useState("");
   const [notes, setnotes] = useState("");
 
   const handleSubmit = () => {
-    return;
+    const data = {
+      country,
+      name,
+      cost,
+      notes,
+    };
+    axios
+      .post(`http://127.0.0.1:5000/create_destination`, data)
+      .then(() => {
+        swalSuccess("Destination added successfully").then(() => {
+          href = "/itinerary/${id}";
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
     <>
-      <div classname="formSectionCSS">
+      <div className="formSectionCSS">
         <Grid
           container
           spacing={0}
@@ -30,6 +48,22 @@ const Destination = () => {
             onSubmit={handleSubmit}
             style={{ margin: "20px auto", textAlign: "center" }}
           >
+            <label htmlFor="country">Country ID:</label>
+            <input
+              type="number"
+              id="country"
+              onChange={(e) => setcountry(e.target.value)}
+              value={country}
+              required
+              style={{
+                width: "100%",
+                height: "40px",
+                margin: "5px auto",
+                padding: "3px 7px",
+                fontSize: "17px",
+                textAlign: "center",
+              }}
+            />
             <label htmlFor="name">Destination Name:</label>
             <input
               type="text"
@@ -48,7 +82,7 @@ const Destination = () => {
             />
             <label htmlFor="cost">Cost</label>
             <input
-              type="text"
+              type="number"
               id="cost"
               onChange={(e) => setcost(e.target.value)}
               value={cost}
@@ -79,7 +113,12 @@ const Destination = () => {
                 textAlign: "center",
               }}
             />
-            <Button type="submit" variant="contained" className="btn btn-block">
+            <Button
+              onClick={handleSubmit}
+              type="submit"
+              variant="contained"
+              className="btn btn-block"
+            >
               New Destination
             </Button>
           </FormControl>
