@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormControl } from "@mui/material";
@@ -11,6 +11,7 @@ const USERNAME_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 const Register = () => {
+    const navigate = useNavigate()
     const [firstName, setFirstName] = useState('');
 
     const [lastName, setLastName] = useState('');
@@ -21,7 +22,8 @@ const Register = () => {
     const [pwd, setPwd] = useState('');
     const [validPwd, setValidPwd] = useState(false);
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault()
         console.log('call handleSubmit')
         const res = await fetch('http://localhost:3030/api/v1/user/register', {
             method: 'POST',
@@ -30,6 +32,7 @@ const Register = () => {
         })
         const data = await res.json()
         console.log(data);
+        navigate('/login');
     }
 
     useEffect(() => {
@@ -46,7 +49,7 @@ const Register = () => {
         <>
             <div className="login-register">
                 <h1>Sign Up</h1>
-                <FormControl onSubmit={handleSubmit}>
+                <form className="my-form" onSubmit={handleSubmit}>
                     <label htmlFor="firstName">First Name:</label>
                     <input
                         className="login-input-text"
@@ -114,9 +117,9 @@ const Register = () => {
                         Must include uppercase and lowercase letters, a number and a special character.<br />
                         Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
                     </p>
-                    <StyledButton disabled={firstName === '' || lastName === '' || !validUsername || !validPwd ? true : false}
+                    <StyledButton type="submit" disabled={firstName === '' || lastName === '' || !validUsername || !validPwd ? true : false}
                     >Sign Up</StyledButton>
-                </FormControl>
+                </form>
                 <p>
                     Have an existing account?<br />
                     <Link to="/login">Sign In</Link>
