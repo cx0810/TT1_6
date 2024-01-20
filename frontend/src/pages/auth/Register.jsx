@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FormControl} from "@mui/material";
+import { FormControl } from "@mui/material";
 
 import StyledButton from "../../components/StyledButton";
 import '../../assets/Login.css';
@@ -38,11 +38,12 @@ const Register = () => {
 
     return (
         <>
-            <section>
+            <div className="login-register">
                 <h1>Sign Up</h1>
                 <FormControl onSubmit={handleSubmit}>
                     <label htmlFor="firstName">First Name:</label>
                     <input
+                        className="login-input-text"
                         type="text"
                         id="firstname"
                         autoComplete="off"
@@ -52,6 +53,7 @@ const Register = () => {
                     />
                     <label htmlFor="lastName">Last Name:</label>
                     <input
+                        className="login-input-text"
                         type="text"
                         id="lastname"
                         autoComplete="off"
@@ -67,6 +69,7 @@ const Register = () => {
                             <FontAwesomeIcon icon={faTimes} />
                         </span></label>
                     <input
+                        className="login-input-text"
                         type="text"
                         id="username"
                         autoComplete="off"
@@ -90,6 +93,7 @@ const Register = () => {
                             <FontAwesomeIcon icon={faTimes} />
                         </span></label>
                     <input
+                        className="login-input-text"
                         type="password"
                         id="password"
                         onChange={(e) => setPwd(e.target.value)}
@@ -104,16 +108,14 @@ const Register = () => {
                         Must include uppercase and lowercase letters, a number and a special character.<br />
                         Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
                     </p>
-                    <StyledButton disabled={firstName === '' || lastName=== '' || !validUsername || !validPwd ? true : false}
+                    <StyledButton disabled={firstName === '' || lastName === '' || !validUsername || !validPwd ? true : false}
                     >Sign Up</StyledButton>
                 </FormControl>
                 <p>
                     Have an existing account?<br />
-                    <span className="">
-                        <Link to="/login">Sign In</Link>
-                    </span>
+                    <Link to="/login">Sign In</Link>
                 </p>
-            </section>
+            </div>
         </>
     )
 }
