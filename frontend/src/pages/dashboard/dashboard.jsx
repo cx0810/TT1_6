@@ -115,17 +115,12 @@ const dashboard = () => {
   return (
     <Box margin={4}>
       <Breadcrumbs aria-label="breadcrumb">
-        <StyledBreadcrumb
-          component="a"
-          href="#"
-          label="Home"
-          // icon={<HomeIcon fontSize="small" />}
-        />
+        
         <StyledBreadcrumb component="a" href="#" label="Dashboard" />
       </Breadcrumbs>
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-          <h1>Itinerary 🗺️</h1>
+          <h1>Dashboard 🗺️</h1>
           <Button 
               variant="contained" 
               color="primary" 
