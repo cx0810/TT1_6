@@ -21,9 +21,15 @@ const Register = () => {
     const [pwd, setPwd] = useState('');
     const [validPwd, setValidPwd] = useState(false);
 
-    // TODO: create handle submit function
-    const handleSubmit = () => {
-        return;
+    const handleSubmit = async () => {
+        console.log('call handleSubmit')
+        const res = await fetch('http://localhost:3030/api/v1/user/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password: pwd, first_name: firstName, last_name: lastName })
+        })
+        const data = await res.json()
+        console.log(data);
     }
 
     useEffect(() => {
