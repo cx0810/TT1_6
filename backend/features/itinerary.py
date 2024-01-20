@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from classes import db, Itinerary
+from classes import db, Itinerary, ItineraryDestination, Destination
 
 itinerary_bp = Blueprint('itinerary_bp', __name__)
 
@@ -24,6 +24,41 @@ def get_all_itinerary():
     
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@itinerary_bp.route('/get_itinary_by_user/<userID>', methods=['POST'])
+def get_itinerary_by_user(userID):
+    try:
+        itinerarys = Itinerary.query.filter_by(user_id=userID).all()
+        output_list = []
+
+        for itinerary in itinerarys:
+            itineraryID = itinerary.id
+            results = db.itinerary_destination.filter(db.itinerary_destination.itinerary_id == itineraryID).distinct().all()
+            # results = db.session.query(ItineraryDestination.destination_id).filter(ItineraryDestination.itinerary_id == itineraryID).distinct().all()
+            print(results)
+            for each in results:
+                print('each:', each )
+            destination_list = [result[0] for result in results]
+
+            for oneDestination in destination_list:
+
+                destination = Destination.query.filter_by(id=oneDestination.id).first()
+
+                destination_obj = {
+                    "destination_id": destination.id,
+                    "country_id": destination.country_id,
+                    "cost": destination.cost,
+                    "name": destination.name,
+                    "notes": destination.notes
+                }
+
+                output_list.append(destination_obj)
+            return jsonify({"code": 200, "data": output_list}), 200
+
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 
 @itinerary_bp.route('/create_itinerary', methods=['POST'])
 def create_itinerary():
