@@ -2,21 +2,17 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FormControl } from "@mui/material";
 
 import StyledButton from "./StyledButton";
-import { FormControl } from "@mui/material";
 
 const USERNAME_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 const Register = () => {
-
-
     const [firstName, setFirstName] = useState('');
-    //   const [validFirstName, setValidFirstName] = useState(false);
 
     const [lastName, setLastName] = useState('');
-    //   const [validLastName, setValidLastName] = useState(false);
 
     const [username, setUsername] = useState('');
     const [validUsername, setValidUsername] = useState(false);
@@ -113,6 +109,12 @@ const Register = () => {
                     </p>
                     <StyledButton>Sign Up</StyledButton>
                 </FormControl>
+                <p>
+                    Have an existing account?<br />
+                    <span className="">
+                        <Link to="/login">Sign In</Link>
+                    </span>
+                </p>
             </section>
         </>
     )

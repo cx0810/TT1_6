@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { FormControl } from "@mui/material";
 
 import StyledButton from "./StyledButton";
-import {FormControl} from "@mui/material";
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -36,6 +37,12 @@ const Login = () => {
           />
           <StyledButton>Sign In</StyledButton>
         </FormControl>
+        <p>
+          Need an account?<br />
+          <span className="">
+            <Link to="/register">Sign Up</Link>
+          </span>
+        </p>
       </section>
     </>
   )
