@@ -3,6 +3,8 @@ from classes import db, Itinerary
 
 status_bp = Blueprint('status_bp', __name__)
 
+
+
 @status_bp.route('/create_itinerary', methods=['POST'])
 def create_itinerary():
     try:

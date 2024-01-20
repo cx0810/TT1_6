@@ -30,6 +30,10 @@ def create_user():
         if not data or 'id' not in data: 
             return jsonify({"code": 400, "message": "Invalid data"}), 400
         
+        #check if username is empty
+        if data['username'] == "":
+            return jsonify({"code": 400, "message":"Username cannot be empty"}), 400
+
         #check if user has already existed
         existing_user = User.query.filter_by(id=data['id']).first()
         if existing_user:
@@ -60,6 +64,10 @@ def update_user():
 
         if not data or not user_id:
             return jsonify({"code": 400, "message": "Invalid data"})
+        
+        #check if username is empty
+        if data['username'] == "":
+            return jsonify({"code": 400, "message":"Username cannot be empty"}), 400
         
         existing_user = User.query.filter_by(id=data['id']).first()
         if not existing_user:

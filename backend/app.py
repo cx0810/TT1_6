@@ -6,19 +6,11 @@ from datetime import datetime, timedelta
 from functools import wraps
 # from classes import db, User, Itinerary, ItineraryDestination, Country, Destination
 from classes import app
-from country import country_bp
+from features.country import country_bp
+from features.user import user_bp
 
 app.register_blueprint(country_bp)
-
-# app = Flask(__name__)
-
-# app.config['SECRET_KEY'] = 'YOU_SECRET_KEY'
-# # how to get a secret key
-# # In your command line >>> access Python >>> then type:
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector:''//root@localhost:3306/tt16'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# db = SQLAlchemy(app)
-# db.init_app(app)
+app.register_blueprint(user_bp)
 
 CORS(app)
 
