@@ -12,7 +12,7 @@ def get_all_itinerary():
         for itinerary in itinerarys:
             itinerary_obj = {
                 'id': itinerary.id,
-                'country_id': itinerary.country_id,
+                'country_id': "Singapore",
                 'user_id': itinerary.user_id,
                 'budget': itinerary.budget,
                 'title': itinerary.title,
