@@ -2,28 +2,35 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import StyledButton from "../../components/StyledButton";
-import '../../assets/Login.css';
+import "../../assets/Login.css";
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('');
-  const [pwd, setPwd] = useState('');
+  const [username, setUsername] = useState("");
+  const [pwd, setPwd] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const res = await fetch('http://localhost:3030/api/v1/user/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify({ username, password: pwd })
-    })
-    const data = await res.json()
+    const res = await fetch("http://localhost:3030/api/v1/user/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ username, password: pwd }),
+    });
+    const data = await res.json();
     console.log("data: ", data);
-    navigate('/dashboard');
-  }
+    navigate("/dashboard");
+  };
 
+  useEffect(() => {
+    setUsername(username);
+  }, [username]);
+
+  useEffect(() => {
+    setPwd(pwd);
+  }, [pwd]);
   useEffect(() => {
     setUsername(username);
   }, [username])
@@ -57,16 +64,21 @@ const Login = () => {
             required
           />
           <StyledButton
-            type="submit" disabled={username === '' || pwd === '' ? true : false}
-          >Sign In</StyledButton>
+            type="submit"
+            disabled={username === "" || pwd === "" ? true : false}
+          >
+            Sign In
+          </StyledButton>
+
         </form>
         <p>
-          Need an account?<br />
+          Need an account?
+          <br />
           <Link to="/register">Sign Up</Link>
         </p>
-      </div >
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
