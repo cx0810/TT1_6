@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -22,11 +23,12 @@ const itinerary = () => {
   const [filteredDestinations, setFilteredDestinations] = useState([]);
   const [openDeleteDestinationModal, setOpenDeleteDestinationModal] =
     useState(false);
+  const { id } = useParams();
 
   useEffect(() => {
     // setLoading(true);
     axios
-      .get(`http://localhost:5000/get_destinations`)
+      .post(`http://localhost:5000/get_destination_by_itinerary/${id}`)
       .then((response) => {
         setDestinations(response.data.data);
         // setLoading(false);
@@ -86,6 +88,18 @@ const itinerary = () => {
       "Are you sure you want to delete this destination?"
     );
     if (!isConfirmed) return;
+    console.log(id);
+    // delete api
+    axios
+      .delete(`http://localhost:5000/delete_destination/${id}`)
+      .then(() => {
+        swalSuccess("Destination deleted successfully").then(() => {
+          window.location.reload();
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -121,13 +135,13 @@ const itinerary = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredDestinations.map((destination) => (
+            {filteredDestinations.map((destination, index) => (
               <TableRow
-                key={destination.id}
+                key={index + 1}
                 // sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {destination.id}
+                  {index + 1}
                 </TableCell>
                 <TableCell align="left">{destination.name}</TableCell>
                 <TableCell align="right">{destination.cost}</TableCell>
@@ -140,7 +154,7 @@ const itinerary = () => {
                     <IconButton
                       color="error"
                       aria-label="delete"
-                      onClick={handleDelete}
+                      onClick={() => handleDelete(destination.id)}
                     >
                       <DeleteIcon />
                     </IconButton>
