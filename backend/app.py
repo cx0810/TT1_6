@@ -9,10 +9,12 @@ from classes import app
 from features.country import country_bp
 from features.user import user_bp
 from features.itinerary import itinerary_bp
+from features.destination import destination_bp
 
 app.register_blueprint(country_bp)
 app.register_blueprint(user_bp)
 app.register_blueprint(itinerary_bp)
+app.register_blueprint(destination_bp)
 
 
 CORS(app)

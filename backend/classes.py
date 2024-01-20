@@ -69,13 +69,14 @@ class Country(db.Model):
     
 
 class Destination(db.Model):
-    def __init__(self, id, country_id, cost, name, notes):
-        self.id = id 
+    def __init__(self, country_id, cost, name, notes):
+        # self.id = id 
+
         self.country_id = country_id
         self.cost = cost
         self.name = name
         self.notes = notes
-    
+        
     id = db.Column(db.Integer, primary_key = True)
     country_id = db.Column(db.Integer, db.ForeignKey('country.id'), nullable=False)
     destination_id = db.relationship('ItineraryDestination', backref='destination', lazy=True, passive_deletes=True)
