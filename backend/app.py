@@ -6,10 +6,12 @@ from datetime import datetime, timedelta
 from functools import wraps
 # from classes import db, User, Itinerary, ItineraryDestination, Country, Destination
 from classes import app
+# from classes import * 
 from features.country import country_bp
 from features.user import user_bp
 from features.itinerary import itinerary_bp
 from features.destination import destination_bp
+# from features.jwt_func import token_required
 
 app.register_blueprint(country_bp)
 app.register_blueprint(user_bp)

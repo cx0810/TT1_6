@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from classes import db, Destination
+from features.jwt_func import token_required
 
 destination_bp = Blueprint('destination_bp', __name__)
 
@@ -8,6 +9,7 @@ destination_bp = Blueprint('destination_bp', __name__)
 ## delete one
 
 @destination_bp.route('/get_destination/<destination_id>', methods=['GET'])
+@token_required
 def get_destination(destination_id):
     try:
         destination = Destination.query.filter_by(id=destination_id).first()
@@ -27,6 +29,7 @@ def get_destination(destination_id):
     
 
 @destination_bp.route('/get_destinations', methods=['GET'])
+@token_required
 def get_destinations():
     try:
         destinations = Destination.query.all()
