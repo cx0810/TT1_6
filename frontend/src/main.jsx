@@ -13,9 +13,5 @@ import { Navigate, Routes, Route, Link, useLocation, useNavigate } from 'react-r
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <App />
-
-    <Routes>
-          {/* <Route path="/dashboard" element={<Dashboard />} />           */}
-      </Routes>
   </BrowserRouter>,
 )
