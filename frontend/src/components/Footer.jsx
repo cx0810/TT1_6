@@ -22,29 +22,28 @@ function Copyright() {
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function StickyFooter() {
+const Footer = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          minHeight: '100vh',
+          minHeight: 'auto',
         }}
       >
         <CssBaseline />
         <Box
           component="footer"
           sx={{
-            py: 3,
+            py: 2,
             px: 2,
             mt: 'auto',
             backgroundColor: (theme) =>
               theme.palette.mode === 'light'
                 ? theme.palette.grey[200]
                 : theme.palette.grey[800],
-          }}
-        >
+          }} >
           <Container maxWidth="sm">
             <Typography variant="body1">
                 DBS Techtrek #1
@@ -56,3 +55,5 @@ export default function StickyFooter() {
     </ThemeProvider>
   );
 }
+
+export default Footer
