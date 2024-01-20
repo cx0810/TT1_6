@@ -13,7 +13,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import { swalConfirmation, swalSuccess } from "../../utils/sweet-alert.utils";
-import Navbar from "../../components/Navbar/Navbar";
+import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
 const itinerary = () => {
