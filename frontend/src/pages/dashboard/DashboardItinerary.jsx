@@ -35,7 +35,9 @@ function DashboardItinerary({ itinerary }) {
         handleClose();
         // console.log("Delete! ClaimID: ", claim.ClaimID);
         // console.log(claim.InsuranceID);
-        axios.delete("http://localhost:5000/insurance_claims/delete/"+claim.InsuranceID+"/"+claim.ClaimID)
+        console.log("Delete! ItineraryID: ", itinerary.id);
+        axios.delete("http://localhost:5000/delete_destination/"+itinerary.id);
+        
     };
 
     // Function to call when delete icon is clicked
@@ -56,14 +58,15 @@ function DashboardItinerary({ itinerary }) {
         <Card sx={{ marginBottom: "20px", position: 'relative' }}>
             <CardContent>
                 <Typography variant="h5" component="div">
-                    {itinerary.Title}
+                    {itinerary.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    <span sx={{ marginBottom: "20px" }}>
-                        Budget: ${itinerary.Budget} <br />
-                    </span>
-                    Country: {itinerary.Country} <br />
-                    List of destinations:  {itinerary.Destinations}
+                    
+                    Budget: ${itinerary.budget} <br />
+                    
+                    {/* Country: {itinerary.Country} <br /> */}
+                    {/* List of destinations:  {itinerary.Destinations} */}
+                    List of destinations:  {itinerary.country_id}
                 </Typography>
             </CardContent>
             <IconButton 

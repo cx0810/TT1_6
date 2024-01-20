@@ -86,11 +86,13 @@ const dashboard = () => {
           }
       ]
   
-      setItineraryList(itineraryList);
+      // setItineraryList(itineraryList);
       try {
-        // const response = await axios.get('http://localhost:5000/insurance_claims/58001001')
-        // const data = await response.data;
-        // console.log('Claim data:', data);
+        const response = await axios.post('http://localhost:5000/get_all_itinerary')
+        const data = await response.data;
+        
+        console.log('Itinerary data:', data.data);
+        setItineraryList(data.data);
 
         // // Organize claims by status
         // const pendingClaims = data.filter((claim) => claim.Status === 'Pending');
