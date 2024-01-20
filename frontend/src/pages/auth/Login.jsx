@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FormControl } from "@mui/material";
 
-import StyledButton from "./StyledButton";
-import '../assets/Login.css';
+import StyledButton from "../../components/StyledButton";
+import '../../assets/Login.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');

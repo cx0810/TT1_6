@@ -22,7 +22,7 @@ function Copyright() {
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function StickyFooter() {
+const Footer = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box
@@ -56,3 +56,5 @@ export default function StickyFooter() {
     </ThemeProvider>
   );
 }
+
+export default Footer
