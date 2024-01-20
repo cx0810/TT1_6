@@ -58,3 +58,13 @@ def init_db():
 
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=True, port=5000)
+
+
+CORS(app)
+
+@app.route('/', methods=['GET'])
+def health_check():
+    return "ok"
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
