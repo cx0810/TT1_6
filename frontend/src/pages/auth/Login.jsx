@@ -30,7 +30,7 @@ const Login = () => {
     <>
       <div className="login-register">
         <h1>Sign In</h1>
-        <FormControl onSubmit={handleSubmit}>
+        <form className="my-form" onSubmit={handleSubmit}>
           <label htmlFor="username">Username:</label>
           <input
             className="login-input-text"
@@ -53,7 +53,7 @@ const Login = () => {
           <StyledButton
             disabled={username === '' || pwd === '' ? true : false}
           >Sign In</StyledButton>
-        </FormControl>
+        </form>
         <p>
           Need an account?<br />
           <Link to="/register">Sign Up</Link>
