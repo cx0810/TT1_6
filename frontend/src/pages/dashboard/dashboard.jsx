@@ -125,7 +125,7 @@ const dashboard = () => {
               variant="contained" 
               color="primary" 
               // startIcon={<AddIcon />} 
-              onClick={() => {navigate('/new-record');}}
+              onClick={() => {navigate('/new-itinerary');}}
           >
               Create
           </Button>

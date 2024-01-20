@@ -51,8 +51,9 @@ const NewItinerary = () => {
     <Breadcrumbs aria-label="breadcrumb">
         <StyledBreadcrumb
         component="a"
-        href="#"
+        href="/dashboard"
         label="Dashboard"
+        sx={{ cursor: 'pointer' }}
         />
         <StyledBreadcrumb component="a" href="#" label="New Itinerary" />
     </Breadcrumbs>
