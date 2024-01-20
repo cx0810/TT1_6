@@ -26,8 +26,7 @@ class User(db.Model):
 
 
 class Itinerary(db.Model):
-    def __init__(self, id, country_id, user_id, budget, title):
-        self.id = id 
+    def __init__(self, country_id, user_id, budget, title):
         self.country_id = country_id
         self.user_id = user_id
         self.budget = budget
