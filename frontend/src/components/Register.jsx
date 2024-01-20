@@ -3,8 +3,10 @@ import { useState } from "react";
 import StyledButton from "./StyledButton";
 import {FormControl} from "@mui/material";
 
-const Login = () => {
+const Register = () => {
   const [username, setUsername] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [pwd, setPwd] = useState('');
 
   // TODO: create handle submit function
@@ -15,7 +17,7 @@ const Login = () => {
   return (
     <>
       <section>
-        <h1>Sign In</h1>
+        <h1>Sign Up</h1>
         <FormControl onSubmit={handleSubmit}>
           <label htmlFor="username">Username:</label>
           <input
@@ -26,6 +28,24 @@ const Login = () => {
             value={username}
             required
           />
+          <label htmlFor="firstName">First Name:</label>
+          <input
+            type="text"
+            id="firstname"
+            autoComplete="off"
+            onChange={(e) => setFirstName(e.target.value)}
+            value={firstName}
+            required
+          />
+          <label htmlFor="lastName">Last Name:</label>
+          <input
+            type="text"
+            id="lastname"
+            autoComplete="off"
+            onChange={(e) => setLastName(e.target.value)}
+            value={lastName}
+            required
+          />
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -34,11 +54,11 @@ const Login = () => {
             value={pwd}
             required
           />
-          <StyledButton>Sign In</StyledButton>
+          <StyledButton>Sign Up</StyledButton>
         </FormControl>
       </section>
     </>
   )
 }
 
-export default Login
+export default Register
