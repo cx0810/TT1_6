@@ -5,6 +5,6 @@ export const mainNavbarItems = [
         id: 1,
         icon: <LogoutIcon />,
         label: 'Logout',
-        route: 'logout',
+        route: '/login',
     },
 ]
