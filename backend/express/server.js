@@ -9,7 +9,12 @@ const PORT = process.env.PORT || 3030;
 
 const app = express();
 // Enable CORS for all routes and origins
-app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:5173",
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use("/api/v1/user", authRouter);
