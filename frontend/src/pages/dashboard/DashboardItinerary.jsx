@@ -16,9 +16,16 @@ import axios from 'axios';
 function DashboardItinerary({ itinerary }) {
 
     return (
-        <div>
-            individual itinerary
-        </div>
+        <Card sx={{ marginBottom: "20px", position: 'relative' }}>
+            <CardContent>
+                <Typography variant="h5" component="div">
+                    {itinerary.Title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    {itinerary.Budget} <br />
+                </Typography>
+            </CardContent>
+        </Card>
     );
 }
 

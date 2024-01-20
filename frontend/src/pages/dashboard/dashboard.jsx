@@ -64,15 +64,28 @@ const dashboard = () => {
           ▪
           List of Destinations included
         */
-        const itineraryList = {
-          "Title": "Dinner",
-          "Budget": 200,
-          "Country": "Singapore",
-          "List of Destinations included": 
-          [
-            "Singapore",
-          ]
-        }
+        const itineraryList = [
+          {
+            "id": 1,
+            "Title": "Dinner",
+            "Budget": 200,
+            "Country": "Singapore",
+            "List of Destinations included": 
+            [
+              "Singapore",
+            ]
+          },
+          {
+            "id": 2,
+            "Title": "Dinner",
+            "Budget": 200,
+            "Country": "Singapore",
+            "List of Destinations included": 
+            [
+              "Singapore",
+            ]
+          }
+      ]
 
         setItineraryList(itineraryList);
         // const response = await axios.get('http://localhost:5000/insurance_claims/58001001')
