@@ -12,6 +12,7 @@ import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
+import Navbar from '../../components/Navbar/Navbar'
 
 const itinerary = () => {
   const rows = [
@@ -34,6 +35,7 @@ const itinerary = () => {
 
   return (
     <div>
+      <Navbar />
       <h1>Itinerary Page</h1>
       <Grid
         sx={{ mb: 1 }}
