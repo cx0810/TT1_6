@@ -9,16 +9,28 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [pwd, setPwd] = useState('');
 
-  // TODO: create handle submit function
-  const handleSubmit = () => {
-    return;
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    const res = await fetch('http://localhost:3030/api/v1/user/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ username, password: pwd })
+    })
+    const data = await res.json()
+    console.log("data: ", data);
+
+    // setLoggedIn(true)
+    // console.log("logged in: ", loggedIn)
+    return data;
   }
 
   return (
     <>
       <div className="login-register">
         <h1>Sign In</h1>
-        <FormControl onSubmit={handleSubmit}>
+        <form className="my-form" onSubmit={handleSubmit}>
           <label htmlFor="username">Username:</label>
           <input
             className="login-input-text"
@@ -41,7 +53,7 @@ const Login = () => {
           <StyledButton
             disabled={username === '' || pwd === '' ? true : false}
           >Sign In</StyledButton>
-        </FormControl>
+        </form>
         <p>
           Need an account?<br />
           <Link to="/register">Sign Up</Link>
