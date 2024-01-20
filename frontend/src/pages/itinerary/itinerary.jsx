@@ -14,7 +14,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import { swalConfirmation, swalSuccess } from "../../utils/sweet-alert.utils";
-import { Link } from "react-router-dom";
 
 const itinerary = () => {
   const [destinations, setDestinations] = useState([]);
@@ -134,7 +133,7 @@ const itinerary = () => {
                 <TableCell align="right">{destination.notes}</TableCell>
                 <TableCell align="right">
                   <div>
-                    <IconButton color="warning" aria-label="edit">
+                    <IconButton color="warning" aria-label="edit" onClick={href = "/editdestination"}>
                       <EditIcon />
                     </IconButton>
                     <IconButton
